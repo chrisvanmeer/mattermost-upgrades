@@ -115,6 +115,12 @@ sudo mysqldump -u mmuser -p mattermost > mattermost-back-$(date +'%F-%H-%M').sql
 sudo find mattermost/ mattermost/client/ -mindepth 1 -maxdepth 1 \! \( -type d \( -path mattermost/client -o -path mattermost/client/plugins -o -path mattermost/config -o -path mattermost/logs -o -path mattermost/plugins -o -path mattermost/data \) -prune \) | sort | sudo xargs rm -r
 sudo cp -an /home/chris/mm/dist/v6.2.5/mattermost-upgrade/. mattermost/
 sudo chown -R mattermost:mattermost mattermost
+
+sudo mattermost/bin/mattermost
+Ctrl+c
+
+sudo restorecon -R /opt/mattermost
+sudo chown -R mattermost:mattermost mattermost
 sudo systemctl start mattermost
 ```
 
@@ -129,6 +135,12 @@ sudo cp -ra mattermost/ mattermost-back-$(date +'%F-%H-%M')/
 sudo mysqldump -u mmuser -p mattermost > mattermost-back-$(date +'%F-%H-%M').sql
 sudo find mattermost/ mattermost/client/ -mindepth 1 -maxdepth 1 \! \( -type d \( -path mattermost/client -o -path mattermost/client/plugins -o -path mattermost/config -o -path mattermost/logs -o -path mattermost/plugins -o -path mattermost/data \) -prune \) | sort | sudo xargs rm -r
 sudo cp -an /home/chris/mm/dist/v7.3.0/mattermost-upgrade/. mattermost/
+sudo chown -R mattermost:mattermost mattermost
+
+sudo mattermost/bin/mattermost
+Ctrl+c
+
+sudo restorecon -R /opt/mattermost
 sudo chown -R mattermost:mattermost mattermost
 sudo systemctl start mattermost
 ```
